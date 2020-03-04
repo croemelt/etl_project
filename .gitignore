@@ -4,3 +4,4 @@ config.py
 *.h5
 *.csv
 __pycache__/
+*.zip
