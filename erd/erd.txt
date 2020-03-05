@@ -1,0 +1,37 @@
+# Simple Conceptual ERD
+commodity_category
+-
+# Unique id of the category to identify the commodity.
+category_id VARCHAR(255) PK
+# Name of the category to identify the commodity.
+category_name VARCHAR(255)
+
+commodity_code
+-
+# Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred.
+commodity_code VARCHAR(255) PK
+# Name of the category to identify the commodity.
+commodity_description VARCHAR(255)
+
+commodity
+-
+# Unique id of the commodity.
+id Integer PK
+# Country name of record.
+country_or_area VARCHAR(255)
+# Year in which the trade has taken place.
+year Integer
+# Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred (one to one relationship).
+commodity_code VARCHAR(255) FK - commodity_code.commodity_code
+# Flow of trade i.e. Export, Import.
+trade_flow VARCHAR(255)
+# Value of the trade in USD.
+trade_value_usd VARCHAR(255)
+# Weight of the commodity in kilograms.
+weight_kg Float
+# A description of the quantity measurement type given the type of item (i.e. Number of Items, Weight in Kilograms, etc.).
+quantity_name VARCHAR(255)
+# Count of the quantity of a given item based on the quantity name.
+quantity Float
+# Id of the category to identify the commodity (one to one relationship).
+category_id VARCHAR(255) FK - commodity_category.category_id
