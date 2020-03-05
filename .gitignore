@@ -1,2 +1,7 @@
 .ipynb_checkpoints
 .DS_Store
+config.py
+*.h5
+*.csv
+__pycache__/
+*.zip
