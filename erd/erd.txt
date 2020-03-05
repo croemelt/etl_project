@@ -17,8 +17,6 @@ commodity
 -
 # Unique id of the commodity.
 id Integer PK
-# Country name of record.
-country_or_area VARCHAR(255)
 # Year in which the trade has taken place.
 year Integer
 # Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred (one to one relationship).
@@ -35,3 +33,12 @@ quantity_name VARCHAR(255)
 quantity Float
 # Id of the category to identify the commodity (one to one relationship).
 category_id VARCHAR(255) FK - commodity_category.category_id
+# Unique id to identify the country.
+country_id Integer FK >- country.id
+
+country
+-
+# Unique id of the country or area.
+id Integer PK
+# Name of the country or area.
+country_or_area VARCHAR(255)
