@@ -2,38 +2,67 @@
 commodity_category
 -
 # Unique id of the category to identify the commodity.
-category_id VARCHAR(255) PK
+category_id String(255) PK
 # Name of the category to identify the commodity.
-category_name VARCHAR(255)
+category_name String(255)
 
 commodity_code
 -
 # Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred.
-commodity_code VARCHAR(255) PK
+commodity_code String(255) PK
 # Name of the category to identify the commodity.
-commodity_description VARCHAR(255)
+commodity_description String(400)
 
-commodity
+commodity_exports
 -
 # Unique id of the commodity.
 id Integer PK
 # Year in which the trade has taken place.
 year Integer
 # Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred (one to one relationship).
-commodity_code VARCHAR(255) FK - commodity_code.commodity_code
-# Flow of trade i.e. Export, Import.
-trade_flow VARCHAR(255)
+# one (commodity exports) to one (commodity code) relationship.
+commodity_code String(255) FK - commodity_code.commodity_code
+# Flow of trade i.e. Export, Re-Export
+trade_flow String(255)
 # Value of the trade in USD.
-trade_value_usd VARCHAR(255)
+trade_value_usd String(255)
 # Weight of the commodity in kilograms.
 weight_kg Float
 # A description of the quantity measurement type given the type of item (i.e. Number of Items, Weight in Kilograms, etc.).
-quantity_name VARCHAR(255)
+quantity_name String(255)
 # Count of the quantity of a given item based on the quantity name.
 quantity Float
-# Id of the category to identify the commodity (one to one relationship).
-category_id VARCHAR(255) FK - commodity_category.category_id
+# Id of the category to identify the commodity.
+# one (commodity exports) to one (commodity category) relationship.
+category_id String(255) FK - commodity_category.category_id
 # Unique id to identify the country.
+# many (commodity exports) to one (country) relationship
+country_id Integer FK >- country.id
+
+commodity_imports
+-
+# Unique id of the commodity.
+id Integer PK
+# Year in which the trade has taken place.
+year Integer
+# Per the World Customs Organization: The Harmonized Commodity Description and Coding System generally referred.
+# # one (commodity imports) to one (commodity code) relationship
+commodity_code String(255) FK - commodity_code.commodity_code
+# Flow of trade i.e. Import, Re-Import
+trade_flow String(255)
+# Value of the trade in USD.
+trade_value_usd String(255)
+# Weight of the commodity in kilograms.
+weight_kg Float
+# A description of the quantity measurement type given the type of item (i.e. Number of Items, Weight in Kilograms, etc.).
+quantity_name String(255)
+# Count of the quantity of a given item based on the quantity name.
+quantity Float
+# Id of the category to identify the commodity.
+# one (commodity import) to one (commodity category) relationship.
+category_id String(255) FK - commodity_category.category_id
+# Unique id to identify the country.
+# many (commodity imports) to one (country) relationship
 country_id Integer FK >- country.id
 
 country
@@ -41,4 +70,24 @@ country
 # Unique id of the country or area.
 id Integer PK
 # Name of the country or area.
-country_or_area VARCHAR(255)
+country_or_area String(255)
+
+financial_aid
+-
+# Unique id to identify the financial aid.
+id Integer PK
+# The type of donor
+donor_type String(255)
+# The type of aid
+aid_type String(255)
+# Who received the financial aid.
+receiver String(255)
+# The amount of financial aid (specified in the currency from the currency column).
+amount Integer
+# The type of currency
+currency String(255)
+# The amount of currency in US dollars.
+USD_amount Integer
+# The unique id of the country that identifies the donor country.
+# many (financial_aid) to one (country) relationship.
+country_id Integer FK >- country.id
