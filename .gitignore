@@ -5,3 +5,4 @@ config.py
 *.csv
 __pycache__/
 *.zip
+lib/
