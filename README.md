@@ -22,7 +22,7 @@ For this ETL, we used a couple of datasets on global trade and financial aid tha
 
 The first step we took in performing the ETL was inspect the csv files and model the data. To model the data, we created an entity relationship diagram (ERD). The ERD allows us to quickly visualize how the different entities in the dataset are related as well as define the entity types (string, integer, etc.). Creating an ERD especially helped with understanding how large datasets like the ones we used can be further broken down into smaller datasets/tables that are easier to analyze, read, and work with. Specifically, one of the challenges we faced going through this process was working with large datasets that had millions of rows and had more columns of data than we needed. The first step in solving that challenge of working with large datasets was creating an ERD. To create the ERD, we used [Quick DBD](https://www.quickdatabasediagrams.com/).
 
-![Image of ERD](../erd/erd.png)
+![Image of ERD](./erd/erd.png)
 
 ## Extract
 
